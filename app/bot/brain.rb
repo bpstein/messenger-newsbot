@@ -34,7 +34,15 @@ class Brain
   end
 
   def process_postback
-    
+    resp = Postback.new(postback.payload, user.id).process
+    resp.each do |r|
+      case r[:type]
+      when "text"
+        send_text(r[:text])
+      else
+        fail "Invalid type"
+      end
+    end
   end
 
   def create_log
