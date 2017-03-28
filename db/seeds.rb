@@ -1,7 +1,5 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+Source.create(name: "TechCrunch", api_id: "techcrunch", image_url: "http://i.newsapi.org/techcrunch-m.png")
+Source.create(name: "IGN", api_id: "ign", image_url: "http://i.newsapi.org/ign-m.png")
+Source.create(name: "Time", api_id: "time", image_url: "http://i.newsapi.org/time-m.png")
+Source.create(name: "Metro", api_id: "metro", image_url: "http://i.newsapi.org/metro-m.png")
+Source.create(name: "CNN", api_id: "cnn", image_url: "http://i.newsapi.org/cnn-m.png")
