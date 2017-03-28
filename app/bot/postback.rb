@@ -17,7 +17,7 @@ class Postback
   private 
 
   def send_onboard
-    [
+    items = [
       {
         type: "text", 
         text: "Hey there, #{user.first_name}! I'll send you top stories from your favourite publishers."
@@ -25,6 +25,17 @@ class Postback
       {
         type: "text",
         text: "Here's a list of publications I have available right now."
+      }
+    ]
+
+    items + sources
+  end
+
+  def sources
+    [
+      {
+        type: "generic",
+        elements: Elements::SourceCarousel.new(user.id).elements
       }
     ]
   end
