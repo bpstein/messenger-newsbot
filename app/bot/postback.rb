@@ -17,6 +17,10 @@ class Postback
       ask_for_schedule($1.to_i)
     when /subscribe&schedule=(\w+)/
       subscribe($1)
+    when "publications"
+      sources 
+    when "subscriptions" 
+      subscriptions
     end
   end
 
@@ -98,10 +102,68 @@ class Postback
   def send_subscription_confirmation(source_id, schedule)
     user.contexts.create(state: "just_subscribed", param: source_id)
 
-    [
+    msg = [
       {
         type: "text",
         text: "Great! You'll receive top stories from #{Source.find(source_id).name} daily at #{schedule}."
+      }
+    ]
+
+    msg + menu_items
+  end
+
+  def subscriptions
+    if user.source_subscriptions.any?
+      [
+        {
+          type: "text",
+          text: "These are your current subscriptions."
+        }, 
+        {
+          type: "generic",
+          elements: Elements::SourceCarousel.new(user.id).subscriptions
+        },
+        {
+          type: "quick_replies",
+          text: "g ",
+          replies: [
+            {
+              content_type: "text",
+              title: "All Publications",
+              payload: "publications"
+            }
+          ]
+        }
+      ]
+    else
+      msg = [
+        {
+          type: "text", 
+          text: "Looks like you don't have any subscriptions. Want some?"
+        } 
+      ]
+
+      msg + sources 
+    end
+  end
+
+  def menu_items
+    [
+      {
+        type: "quick_replies",
+        text: " g",
+        replies: [
+          {
+            content_type: "text",
+            title: "My subscriptions",
+            payload: "subscriptions"
+          },
+          {
+            content_type: "text", 
+            title: "View Publications",
+            payload: "publications"
+          }
+        ]
       }
     ]
   end

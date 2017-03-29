@@ -13,6 +13,11 @@ module Elements
       elements = sources.map{ |s| element(s) } 
     end
 
+    def subscriptions
+      subscriptions = user.source_subscriptions
+      subscriptions.map { |s| element(s.source) }
+    end
+
     private 
 
     def element(source)
