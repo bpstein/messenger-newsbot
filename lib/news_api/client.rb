@@ -16,7 +16,7 @@ module NewsAPI
       }
 
       data = JSON.load(get("articles", options))
-      data.articles
+      data["articles"]
     end
 
     private 
