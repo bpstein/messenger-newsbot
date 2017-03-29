@@ -17,6 +17,8 @@ class Postback
       ask_for_schedule($1.to_i)
     when /subscribe&schedule=(\w+)/
       subscribe($1)
+    when /unsubscribe&source_id=(\d+)/
+      unsubscribe($1.to_i)
     when "publications"
       sources 
     when "subscriptions" 
@@ -99,6 +101,16 @@ class Postback
     send_subscription_confirmation(source_id, schedule)
   end
 
+  def unsubscribe(source_id)
+    SourceSubscription.where("user_id = ? AND source_id = ?", user.id, source_id).first.delete
+    items = [
+      type: "text",
+      text: "You've unsubscribed from #{Source.find(source_id).name}"
+    ]
+
+    items += menu_items
+  end
+
   def send_subscription_confirmation(source_id, schedule)
     user.contexts.create(state: "just_subscribed", param: source_id)
 
@@ -125,7 +137,7 @@ class Postback
         },
         {
           type: "quick_replies",
-          text: "g ",
+          text: " ",
           replies: [
             {
               content_type: "text",
@@ -151,7 +163,7 @@ class Postback
     [
       {
         type: "quick_replies",
-        text: " g",
+        text: " ",
         replies: [
           {
             content_type: "text",
