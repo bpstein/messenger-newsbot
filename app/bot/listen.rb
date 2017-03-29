@@ -38,3 +38,25 @@ Facebook::Messenger::Thread.set(
     } 
   ]
 )
+
+Facebook::Messenger::Thread.set(
+  setting_type: "call_to_actions",
+  thread_state: "existing_thread",
+  call_to_actions: [
+    {
+      type: "postback",
+      title: "View Publications",
+      payload: "publications"
+    },
+    {
+      type: "postback",
+      title: "My Subscriptions",
+      payload: "subscriptions"
+    },
+    {
+      type: "web_url",
+      title: "Powered by NewsAPI",
+      url: "http://NewsAPI.org"
+    }
+  ]
+)
