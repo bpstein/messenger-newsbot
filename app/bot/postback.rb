@@ -21,8 +21,12 @@ class Postback
       unsubscribe($1.to_i)
     when "publications"
       sources 
+    when /publications&page=(\d+)/
+      sources($1.to_i)
     when "subscriptions" 
       subscriptions
+    when /subscriptions&page=(\d+)/
+      subscriptions($1.to_i)
     end
   end
 
@@ -43,11 +47,11 @@ class Postback
     items + sources
   end
 
-  def sources
+  def sources(page = 1)
     [
       {
         type: "generic",
-        elements: Elements::SourceCarousel.new(user.id).elements
+        elements: Elements::SourceCarousel.new(user.id).elements(page)
       }
     ]
   end
@@ -124,7 +128,7 @@ class Postback
     msg + menu_items
   end
 
-  def subscriptions
+  def subscriptions(page = 1)
     if user.source_subscriptions.any?
       [
         {
@@ -133,7 +137,7 @@ class Postback
         }, 
         {
           type: "generic",
-          elements: Elements::SourceCarousel.new(user.id).subscriptions
+          elements: Elements::SourceCarousel.new(user.id).subscriptions(page)
         },
         {
           type: "quick_replies",

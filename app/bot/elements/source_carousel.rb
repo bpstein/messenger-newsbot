@@ -8,14 +8,26 @@ module Elements
       @user = User.find(user_id)
     end
 
-    def elements
-      sources = Source.all 
+    def elements(page = 1)
+      sources = Source.all.paginate(per_page: 9, page: page)
       elements = sources.map{ |s| element(s) } 
+
+      if sources.total_pages != sources.current_page
+        elements += last("publications&page=#{page + 1}")
+      end
+
+      elements 
     end
 
-    def subscriptions
-      subscriptions = user.source_subscriptions
-      subscriptions.map { |s| element(s.source) }
+    def subscriptions(page = 1)
+      subscriptions = user.source_subscriptions.paginate(per_page: 9, page: page)
+      elements = subscriptions.map { |s| element(s.source) }
+
+      if subscriptions.total_pages != subscriptions.current_page
+        elements += last("subscriptions&page=#{page + 1}")
+      end
+
+      elements 
     end
 
     private 
@@ -55,6 +67,23 @@ module Elements
           payload: "start_subscribe&source_id=#{source_id}"
         }
       end
+    end
+
+    def last(payload)
+      [
+        { 
+          title: "View More",
+          image_url: "",
+          subtitle: "",
+          buttons: [
+            {
+              type: "postback",
+              title: "More",
+              payload: payload
+            }
+          ]
+        }
+      ]
     end
   end
 end
