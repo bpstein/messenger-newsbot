@@ -1,3 +1,5 @@
+require 'facebook/messenger'
+
 class Brain
 
   include Facebook::Messenger
@@ -67,6 +69,13 @@ class Brain
         sent_at: postback.sent_at
       )
     end
+  end
+
+  def send_subscription_stories(source_id, user_id)
+    elements = Element::StoryCarousel.new(source_id).elements
+    @sender = { id: User.find(user_id).fb_id }
+    send_text("Here are today's top stories from #{Source.find(source_id).name}")
+    send_generic_template(elements)
   end
 
   private

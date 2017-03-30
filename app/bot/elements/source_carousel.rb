@@ -1,5 +1,4 @@
 module Elements 
-
   class SourceCarousel
 
     attr_reader :user
