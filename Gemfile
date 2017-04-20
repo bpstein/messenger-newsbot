@@ -27,6 +27,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_girl_rails'
   gem 'coveralls', require: false
+  gem 'ffaker'
+  gem 'shoulda-matchers', '~> 3.1'
 end
 
 group :development do
@@ -34,6 +36,10 @@ group :development do
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+group :test do 
+  gem 'climate_control'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
