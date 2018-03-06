@@ -1,9 +1,9 @@
-# PeerGear
+# NewsBot
 
-[![Build Status](https://travis-ci.org/bpstein/newsbot-messenger.svg?branch=master)](https://travis-ci.org/bpstein/newsbot-messenger)
-[![Coverage Status](https://coveralls.io/repos/github/bpstein/newsbot-messenger/badge.svg?branch=master)](https://coveralls.io/github/bpstein/newsbot-messenger?branch=master) 
-[![Code Climate](https://codeclimate.com/github/bpstein/newsbot-messenger/badges/gpa.svg)](https://codeclimate.com/github/bpstein/newsbot-messenger)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/4116d956f2c54eaba148f333f074deef)](https://www.codacy.com/app/bpstein/newsbot-messenger?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bpstein/newsbot-messenger&amp;utm_campaign=Badge_Grade)
+[![Build Status](https://travis-ci.org/bpstein/messenger-newsbot.svg?branch=master)](https://travis-ci.org/bpstein/messenger-newsbot)
+[![Coverage Status](https://coveralls.io/repos/github/bpstein/messenger-newsbot/badge.svg)](https://coveralls.io/github/bpstein/messenger-newsbot)
+[![Maintainability](https://api.codeclimate.com/v1/badges/423179b4af00d0679ab1/maintainability)](https://codeclimate.com/github/bpstein/messenger-newsbot/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/423179b4af00d0679ab1/test_coverage)](https://codeclimate.com/github/bpstein/messenger-newsbot/test_coverage)
 
 ## Table of Contents
 
@@ -24,7 +24,7 @@ This project utilises the following technologies:
 ## Testing
 
 ## Live Deployment
-Project has been [deployed on Heroku](http://bs-peergear.herokuapp.com/)
+Project has been [deployed on Heroku](http://.herokuapp.com/)
 
 ## Author
 [Ben Stein](https://github.com/bpstein)
