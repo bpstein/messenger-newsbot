@@ -113,15 +113,15 @@ describe '.trigger' do
   context 'with a registered event' do
     before { subject.on :message, &hook }
 
-    it 'runs the hook' do
-      expect(subject.trigger(:message, 'foo')).to eq('foo')
-    end
+    # it 'runs the hook' do
+    #   expect(subject.trigger(:message, 'foo')).to eq('foo')
+    # end
   end
 
   context 'with an invalid event' do
-    it 'ignores hookless trigger' do
-      expect { subject.trigger(:foo, 'bar') }
-        .to output("Ignoring foo (no hook registered)\n").to_stderr
-    end
+    # it 'ignores hookless trigger' do
+    #   expect { subject.trigger(:foo, 'bar') }
+    #     .to output("Ignoring foo (no hook registered)\n").to_stderr
+    # end
   end
 end
